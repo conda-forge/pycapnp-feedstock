@@ -1,4 +1,4 @@
-{% set version = "0.5.7" %}
+{% set version = "0.5.9" %}
 
 package:
   name: pycapnp
@@ -7,7 +7,7 @@ package:
 source:
   fn: pycapnp-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/p/pycapnp/pycapnp-{{ version }}.tar.gz
-  md5: d47396d6724593afcbb728b87ac6de07
+  md5: 4180c74f4a9adfcd8a5a605843399c83
 
 build:
   number: 0
