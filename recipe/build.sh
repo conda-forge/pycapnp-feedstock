@@ -8,4 +8,4 @@ if [ "$(uname)" = "Darwin" ]; then
     export CFLAGS="-stdlib=libc++ -I$PREFIX/include"
 fi
 
-python setup.py install
+python setup.py install --single-version-externally-managed --record record.txt
