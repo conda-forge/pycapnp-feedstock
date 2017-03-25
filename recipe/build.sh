@@ -4,7 +4,7 @@ export CPLUS_INCLUDE_PATH="$PREFIX/include"
 
 if [ "$(uname)" = "Darwin" ]; then
     # Follow capnproto C++ library recipe settings (required by C++11)
-    export MACOSX_DEPLOYMENT_TARGET="10.7"
+    export MACOSX_DEPLOYMENT_TARGET="10.9"
     export CFLAGS="-stdlib=libc++ -I$PREFIX/include"
 fi
 
