@@ -10,11 +10,12 @@ source:
   sha256: 59f9181091e7030776e434db216373297db41e16eb257fe450102bd29745459f
 
 build:
-  number: 0
+  number: 1
   # pycapnp does not support Windows due to the lack of dynamic API support in
   # C++ Cap'n Proto on Windows:
   # https://github.com/jparyani/pycapnp/issues/53
   skip: True  # [win]
+  script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
   build:
