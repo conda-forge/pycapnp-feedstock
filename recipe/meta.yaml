@@ -1,4 +1,4 @@
-{% set version = "0.5.10" %}
+{% set version = "0.6.3" %}
 
 package:
   name: pycapnp
@@ -7,10 +7,10 @@ package:
 source:
   fn: pycapnp-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/p/pycapnp/pycapnp-{{ version }}.tar.gz
-  sha256: 59f9181091e7030776e434db216373297db41e16eb257fe450102bd29745459f
+  sha256: b3c5a1fcc93fd02fdc070aeccb89654b87f20bdc740f643cc6378925ed6d4c17
 
 build:
-  number: 1
+  number: 0
   # pycapnp does not support Windows due to the lack of dynamic API support in
   # C++ Cap'n Proto on Windows:
   # https://github.com/jparyani/pycapnp/issues/53
