@@ -1,4 +1,4 @@
-{% set version = "0.6.4" %}
+{% set version = "1.0.0" %}
 
 package:
   name: pycapnp
@@ -7,14 +7,14 @@ package:
 source:
   fn: pycapnp-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/p/pycapnp/pycapnp-{{ version }}.tar.gz
-  sha256: 44e14a5ace399cf1753acb8bbce558b8c895c48fd2102d266c34eaff286824cf
+  sha256: 9f6fcca349ebf2ec04ca7eacb076aea3e4fcdc010ac33c98b54f0a19d4e5d3e0
 
 build:
-  number: 2
+  number: 0
   # pycapnp does not support Windows due to the lack of dynamic API support in
   # C++ Cap'n Proto on Windows:
   # https://github.com/jparyani/pycapnp/issues/53
-  skip: True  # [win]
+  skip: true  # [win]
 
 requirements:
   build:
@@ -36,7 +36,8 @@ test:
 about:
   home: http://jparyani.github.io/pycapnp/
   license: BSD 2-clause
-  summary: "A python wrapping of the C++ implementation of the Cap'n Proto library"
+  license_file: LICENSE.md
+  summary: A python wrapping of the C++ implementation of the Cap'n Proto library
 
 extra:
   recipe-maintainers:
