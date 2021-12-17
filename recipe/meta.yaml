@@ -19,14 +19,16 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - cmake
+    - {{ compiler('cxx') }}
   host:
+    - capnproto
     - cython
     - pip
     - pkgconfig
     - python
   run:
     - python
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
   imports:
