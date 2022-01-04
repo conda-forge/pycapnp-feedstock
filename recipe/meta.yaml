@@ -11,6 +11,7 @@ source:
   sha256: 786a2e39b79e592a41e8a1eaeea6e41e2015ecb9f5b7f7c20dfc5768ba1ae077
 
 build:
+  skip: True         # [python_impl == 'pypy']
   number: 0
   script: 
     - copy /y "{{ LIBRARY_INC }}\capnp\*.capnp" .\capnp\  # [win]
