@@ -14,7 +14,7 @@ build:
   number: 0
   script: 
     - copy /y "{{ LIBRARY_INC }}\capnp\*.capnp" .\capnp\ # [win]
-    - cp -f {{ PREFIX }}/include/capnp/*.capnp" ./capnp/ # [not win]
+    - cp -f {{ PREFIX }}/include/capnp/*.capnp ./capnp/ # [not win]
     - {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt --force-system-libcapnp # [win]
     - {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt # [not win]
 
@@ -25,7 +25,7 @@ requirements:
   host:
     - capnproto
     - cython
-    - pkgconfig # [not win]
+    - pkgconfig
     - python
   run:
     - python
