@@ -12,7 +12,7 @@ source:
 
 build:
   skip: True         # [python_impl == 'pypy']
-  number: 0
+  number: 1
   script: 
     - copy /y "{{ LIBRARY_INC }}\capnp\*.capnp" .\capnp\  # [win]
     - cp -f {{ PREFIX }}/include/capnp/*.capnp ./capnp/  # [not win]
