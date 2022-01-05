@@ -1,43 +1,56 @@
-{% set version = "0.6.4" %}
+{% set name = "pycapnp" %}
+{% set version = "1.1.0" %}
+
 
 package:
-  name: pycapnp
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: pycapnp-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/p/pycapnp/pycapnp-{{ version }}.tar.gz
-  sha256: 44e14a5ace399cf1753acb8bbce558b8c895c48fd2102d266c34eaff286824cf
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pycapnp-{{ version }}.tar.gz
+  sha256: 786a2e39b79e592a41e8a1eaeea6e41e2015ecb9f5b7f7c20dfc5768ba1ae077
 
 build:
-  number: 2
-  # pycapnp does not support Windows due to the lack of dynamic API support in
-  # C++ Cap'n Proto on Windows:
-  # https://github.com/jparyani/pycapnp/issues/53
-  skip: True  # [win]
+  skip: True         # [python_impl == 'pypy']
+  number: 0
+  script: 
+    - copy /y "{{ LIBRARY_INC }}\capnp\*.capnp" .\capnp\  # [win]
+    - cp -f {{ PREFIX }}/include/capnp/*.capnp ./capnp/  # [not win]
+    - {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt --force-system-libcapnp  # [win]
+    - {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt  # [not win]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-
   host:
-    - python
-    - setuptools
     - capnproto
-
+    - cython
+    - pkgconfig
+    - setuptools
+    - python
   run:
     - python
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
+  source_files:
+    - test
+    - examples
+  requires:
+    - python
+    - pytest
   imports:
     - capnp
+  commands:
+    - pytest test
 
 about:
-  home: http://jparyani.github.io/pycapnp/
-  license: BSD 2-clause
-  summary: "A python wrapping of the C++ implementation of the Cap'n Proto library"
+  home: https://github.com/capnproto/pycapnp
+  summary: A cython wrapping of the C++ Cap'n Proto library
+  license: BSD-2-Clause
+  license_file: LICENSE.md
 
 extra:
   recipe-maintainers:
-    - frol
+    - LehMaxence
