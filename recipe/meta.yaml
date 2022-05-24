@@ -1,5 +1,5 @@
 {% set name = "pycapnp" %}
-{% set version = "1.1.0" %}
+{% set version = "1.1.1" %}
 
 
 package:
@@ -8,12 +8,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pycapnp-{{ version }}.tar.gz
-  sha256: 786a2e39b79e592a41e8a1eaeea6e41e2015ecb9f5b7f7c20dfc5768ba1ae077
+  sha256: 45e77810624b9d2b37cbdc4d1854ff9984b3dea20d1b3f7dd4a65403263a5aea
 
 build:
-  skip: True         # [python_impl == 'pypy']
-  number: 2
-  script: 
+  skip: true  # [python_impl == 'pypy']
+  number: 0
+  script:
     - copy /y "{{ LIBRARY_INC }}\capnp\*.capnp" .\capnp\  # [win]
     - cp -f {{ PREFIX }}/include/capnp/*.capnp ./capnp/  # [not win]
     - {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt --force-system-libcapnp  # [win]
