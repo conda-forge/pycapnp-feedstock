@@ -1,5 +1,5 @@
 c_compiler:
-- vs2017
+- vs2019
 capnproto:
 - 0.10.2
 channel_sources:
@@ -7,7 +7,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2017
+- vs2019
 pin_run_as_build:
   python:
     min_pin: x.x
