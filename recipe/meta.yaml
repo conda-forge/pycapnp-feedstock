@@ -1,5 +1,5 @@
 {% set name = "pycapnp" %}
-{% set version = "1.2.0" %}
+{% set version = "1.2.1" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pycapnp-{{ version }}.tar.gz
-  sha256: d2b7365d325a78daf14a10d615dcbad2f92c88aade3a34b647780a7ec9ac0e0f
+  sha256: fb464d181f2e48799ed5acdc780dfb291d8ddacfe8080a5119378d522c975a88
 
 build:
   skip: true  # [python_impl == 'pypy']
