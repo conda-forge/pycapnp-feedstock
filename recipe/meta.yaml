@@ -26,6 +26,7 @@ requirements:
   host:
     - capnproto
     - cython <3 # https://github.com/capnproto/pycapnp/issues/319
+    - libxcrypt # [py==38 and linux]
     - pkgconfig
     - setuptools
     - python
