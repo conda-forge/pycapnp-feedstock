@@ -25,7 +25,7 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - capnproto
-    - cython
+    - cython <3 # https://github.com/capnproto/pycapnp/issues/319
     - pkgconfig
     - setuptools
     - python
