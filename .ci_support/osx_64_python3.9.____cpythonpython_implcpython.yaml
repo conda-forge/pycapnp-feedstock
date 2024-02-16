@@ -7,7 +7,7 @@ c_compiler:
 c_compiler_version:
 - '16'
 capnproto:
-- 0.10.2
+- 1.0.2
 channel_sources:
 - conda-forge
 channel_targets:
