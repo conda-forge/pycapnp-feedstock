@@ -6,8 +6,12 @@ c_compiler:
 - clang
 c_compiler_version:
 - '16'
+c_stdlib:
+- macosx_deployment_target
+c_stdlib_version:
+- '10.12'
 capnproto:
-- 0.10.2
+- 1.0.2
 channel_sources:
 - conda-forge
 channel_targets:
