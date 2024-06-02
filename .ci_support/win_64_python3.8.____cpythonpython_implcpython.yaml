@@ -1,9 +1,5 @@
 c_compiler:
 - vs2019
-c_stdlib:
-- vs
-c_stdlib_version:
-- '2019'
 capnproto:
 - 1.0.2
 channel_sources:
