@@ -42,6 +42,7 @@ test:
   requires:
     - python
     - pytest
+    - pytest-asyncio
   imports:
     - capnp
   commands:
