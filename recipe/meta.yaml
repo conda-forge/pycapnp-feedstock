@@ -1,5 +1,5 @@
 {% set name = "pycapnp" %}
-{% set version = "1.3.0" %}
+{% set version = "2.0.0" %}
 
 
 package:
@@ -7,17 +7,19 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pycapnp-{{ version }}.tar.gz
-  sha256: 7cf514c3068064e593d0401503f7a623c24c55776702a7a2d9cad9854710aa56
+  # as of 2.0.0, the PyPi source does not include the _custom_build/ directory, which is needed
+  # for pip install to work. This is why we are using the GitHub source.
+  url: https://github.com/capnproto/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: a9e3acc58d8d67a08dbe6c86513b6bbff734a608a7fceb102883a88877643059
 
 build:
   skip: true  # [python_impl == 'pypy']
-  number: 1
+  number: 0
   script:
     - copy /y "{{ LIBRARY_INC }}\capnp\*.capnp" .\capnp\  # [win]
     - cp -f {{ PREFIX }}/include/capnp/*.capnp ./capnp/  # [not win]
-    - {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt --force-system-libcapnp  # [win]
-    - {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt  # [not win]
+    - pip install . -C force-system-libcapnp=True  # [win]
+    - pip install .  # [not win]
 
 requirements:
   build:
@@ -30,6 +32,7 @@ requirements:
     - libxcrypt  # [py==38 and linux]
     - pkgconfig
     - setuptools
+    - pip
     - python
   run:
     - python
@@ -42,6 +45,7 @@ test:
   requires:
     - python
     - pytest
+    - pytest-asyncio
   imports:
     - capnp
   commands:
