@@ -23,12 +23,14 @@ build:
 
 requirements:
   build:
+    - capnproto                              # [build_platform != target_platform]
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     # <3 because https://github.com/capnproto/pycapnp/issues/319
     - cython <3                              # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
   host:
     - capnproto
     # <3 because https://github.com/capnproto/pycapnp/issues/319
