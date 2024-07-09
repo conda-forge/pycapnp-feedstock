@@ -45,7 +45,6 @@ requirements:
     - python
 
 test:
-  skip: true # [build_platform != target_platform]
   source_files:
     - test
     - examples
@@ -54,9 +53,9 @@ test:
     - pytest
     - pytest-asyncio
   imports:
-    - capnp
+    - capnp        # [build_platform == target_platform]
   commands:
-    - pytest test
+    - pytest test  # [build_platform == target_platform]
 
 about:
   home: https://github.com/capnproto/pycapnp
