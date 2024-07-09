@@ -18,6 +18,8 @@ build:
   script:
     - copy /y "{{ LIBRARY_INC }}\capnp\*.capnp" .\capnp\  # [win]
     - cp -f {{ PREFIX }}/include/capnp/*.capnp ./capnp/  # [not win]
+    # Can't use `pip install` because it doesn't seem there's a way to set this
+    # argument that way.
     - python setup.py build_ext --force-system-libcapnp install
 
 requirements:
@@ -43,6 +45,7 @@ requirements:
     - python
 
 test:
+  skip: true # [build_platform != target_platform]
   source_files:
     - test
     - examples
