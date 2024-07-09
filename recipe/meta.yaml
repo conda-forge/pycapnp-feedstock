@@ -18,8 +18,7 @@ build:
   script:
     - copy /y "{{ LIBRARY_INC }}\capnp\*.capnp" .\capnp\  # [win]
     - cp -f {{ PREFIX }}/include/capnp/*.capnp ./capnp/  # [not win]
-    - pip install . -C force-system-libcapnp=True  # [win]
-    - pip install .  # [not win]
+    - pip install . -C force-system-libcapnp=True
 
 requirements:
   build:
