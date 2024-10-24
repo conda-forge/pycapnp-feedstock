@@ -13,7 +13,6 @@ source:
   sha256: a9e3acc58d8d67a08dbe6c86513b6bbff734a608a7fceb102883a88877643059
 
 build:
-  skip: true  # [python_impl == 'pypy']
   number: 1
   script:
     - copy /y "{{ environ.get('LIBRARY_INC', '') }}\capnp\*.capnp" .\capnp\  # [win]
