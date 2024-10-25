@@ -13,11 +13,10 @@ source:
   sha256: a9e3acc58d8d67a08dbe6c86513b6bbff734a608a7fceb102883a88877643059
 
 build:
-  skip: true  # [python_impl == 'pypy']
-  number: 1
+  number: 2
   script:
-    - copy /y "{{ LIBRARY_INC }}\capnp\*.capnp" .\capnp\  # [win]
-    - cp -f {{ PREFIX }}/include/capnp/*.capnp ./capnp/  # [not win]
+    - copy /y "{{ environ.get('LIBRARY_INC', '') }}\capnp\*.capnp" .\capnp\  # [win]
+    - cp -f "{{ environ.get('PREFIX', '') }}/include/capnp"/*.capnp ./capnp/  # [not win]
     # Can't use `pip install` because it doesn't seem there's a way to set this
     # argument that way.
     - python setup.py build_ext --force-system-libcapnp install
@@ -36,7 +35,6 @@ requirements:
     - capnproto
     # <3 because https://github.com/capnproto/pycapnp/issues/319
     - cython <3
-    - libxcrypt  # [py==38 and linux]
     - pkgconfig
     - setuptools
     - pip
