@@ -1,5 +1,5 @@
 {% set name = "pycapnp" %}
-{% set version = "2.0.0" %}
+{% set version = "2.2.0" %}
 
 
 package:
@@ -10,10 +10,10 @@ source:
   # as of 2.0.0, the PyPi source does not include the _custom_build/ directory, which is needed
   # for pip install to work. This is why we are using the GitHub source.
   url: https://github.com/capnproto/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: a9e3acc58d8d67a08dbe6c86513b6bbff734a608a7fceb102883a88877643059
+  sha256: 743b9e51ec304078966eb670fcc80f1c607f986efa7e666feaae8c869deb14ac
 
 build:
-  number: 2
+  number: 0
   script:
     - copy /y "{{ environ.get('LIBRARY_INC', '') }}\capnp\*.capnp" .\capnp\  # [win]
     - cp -f "{{ environ.get('PREFIX', '') }}/include/capnp"/*.capnp ./capnp/  # [not win]
